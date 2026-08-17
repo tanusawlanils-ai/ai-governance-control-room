@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="styles.css">
+<script src="_ds_bundle.js"></script>
+<style>
+  button{border-radius:var(--radius-md)}
+  [style*="background:var(--color-neutral-100)"],[style*="border:1px solid var(--color-neutral-100)"],[style*="background:var(--color-neutral-900);border-top"]{border-radius:var(--radius-md)}
+  input[type="range"]{border-radius:var(--radius-md)}
+  body{margin:0;background:var(--color-neutral-900);color:var(--color-neutral-200);font-family:var(--font-body);-webkit-font-smoothing:antialiased}
+  a{color:var(--color-accent-500);text-underline-offset:3px}
+  a:hover{color:var(--color-accent-400)}
+  button{font-family:inherit}
+  :focus-visible{outline:2px solid var(--color-accent-500);outline-offset:2px}
+  ::selection{background:color-mix(in srgb, var(--color-accent-500) 32%, transparent)}
+  @keyframes rainfall{from{transform:translate(0,-40px)}to{transform:translate(-14px,40px)}}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--color-neutral-900)">
+
+<header style="border-bottom:2px solid color-mix(in srgb, var(--color-neutral-200) 40%, transparent)">
+  <div style="max-width:1240px;margin:0 auto;padding:20px 32px 0">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:20px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="font:600 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;color:var(--color-accent-500)">AI-SAFE / G-0417</div>
+        <div style="font:500 21px/1.1 var(--font-heading);letter-spacing:-.01em;color:var(--color-neutral-100)">AI Governance Control Room</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;border:1px solid color-mix(in srgb, var(--color-accent-500) 55%, transparent);padding:6px 10px">
+        <span style="width:7px;height:7px;background:var(--color-accent-500);flex:none"></span>
+        <span style="font:600 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--color-accent-400)">SYNTHETIC DEMO</span>
+      </div>
+    </div>
+
+    <h1 style="margin:26px 0 0;font:500 clamp(34px,5vw,56px)/1.04 var(--font-heading);letter-spacing:-.03em;color:var(--color-neutral-100);max-width:20ch;text-wrap:balance">Near-miss: degraded crosswalk detection</h1>
+
+    <div style="display:flex;flex-wrap:wrap;gap:0;margin:22px 0 0;border-top:1px solid color-mix(in srgb, var(--color-neutral-200) 18%, transparent)">
+      <div style="padding:12px 22px 12px 0;display:flex;flex-direction:column;gap:3px;border-right:1px solid color-mix(in srgb, var(--color-neutral-200) 18%, transparent);padding-right:22px">
+        <span style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-500)">STATUS</span>
+        <span style="font:600 13px/1.3 var(--font-body);color:var(--color-accent-400)">In Review</span>
+      </div>
+      <div style="padding:12px 22px;display:flex;flex-direction:column;gap:3px;border-right:1px solid color-mix(in srgb, var(--color-neutral-200) 18%, transparent)">
+        <span style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-500)">PRIORITY</span>
+        <span style="font:600 13px/1.3 var(--font-body);color:var(--color-neutral-100)">High</span>
+      </div>
+      <div style="padding:12px 22px;display:flex;flex-direction:column;gap:3px;border-right:1px solid color-mix(in srgb, var(--color-neutral-200) 18%, transparent)">
+        <span style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-500)">OWNER</span>
+        <span style="font:600 13px/1.3 var(--font-body);color:var(--color-neutral-100)">Safety Council</span>
+      </div>
+      <div style="padding:12px 0 12px 22px;display:flex;flex-direction:column;gap:3px">
+        <span style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-500)">BOARD REVIEW</span>
+        <span style="font:600 13px/1.3 var(--font-body);color:var(--color-neutral-100)">24 Apr</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:16px;padding:12px 0 18px;font:600 10px/1.6 ui-monospace,Menlo,monospace;letter-spacing:.09em;color:var(--color-neutral-500)">
+      <span>AAD AI INVENTORY · INV-0417<span style="position:relative;display:inline-flex;vertical-align:middle;margin-left:5px"><button type="button" onClick="{{ tips.inv.toggle }}" aria-label="More info: AAD AI Inventory" style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border:1px solid var(--color-neutral-500);border-radius:50%;font:600 8px/1 ui-monospace,Menlo,monospace;color:var(--color-neutral-400);cursor:pointer;background:transparent;padding:0">i</button><span role="tooltip" style="{{ tips.inv.style }}">{{ tips.inv.text }}</span></span></span>
+      <span style="color:var(--color-neutral-700)">|</span>
+      <span>EU AI ACT CLASS: <span style="color:var(--color-accent-400)">HIGH-RISK · ANNEX III</span><span style="position:relative;display:inline-flex;vertical-align:middle;margin-left:5px"><button type="button" onClick="{{ tips.euai.toggle }}" aria-label="More info: EU AI Act class" style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border:1px solid var(--color-neutral-500);border-radius:50%;font:600 8px/1 ui-monospace,Menlo,monospace;color:var(--color-neutral-400);cursor:pointer;background:transparent;padding:0">i</button><span role="tooltip" style="{{ tips.euai.style }}">{{ tips.euai.text }}</span></span></span>
+      <span style="color:var(--color-neutral-700)">|</span>
+      <span>ISO/IEC 42001 SCOPE: IN SCOPE<span style="position:relative;display:inline-flex;vertical-align:middle;margin-left:5px"><button type="button" onClick="{{ tips.iso.toggle }}" aria-label="More info: ISO/IEC 42001 scope" style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border:1px solid var(--color-neutral-500);border-radius:50%;font:600 8px/1 ui-monospace,Menlo,monospace;color:var(--color-neutral-400);cursor:pointer;background:transparent;padding:0">i</button><span role="tooltip" style="{{ tips.iso.style }}">{{ tips.iso.text }}</span></span></span>
+      <span style="color:var(--color-neutral-700)">|</span>
+      <span>TRACKED IN: JIRA GOV-0417 · CONFLUENCE AAD-GOV · SHAREPOINT EVIDENCE LIBRARY<span style="position:relative;display:inline-flex;vertical-align:middle;margin-left:5px"><button type="button" onClick="{{ tips.tracked.toggle }}" aria-label="More info: systems of record" style="display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border:1px solid var(--color-neutral-500);border-radius:50%;font:600 8px/1 ui-monospace,Menlo,monospace;color:var(--color-neutral-400);cursor:pointer;background:transparent;padding:0">i</button><span role="tooltip" style="{{ tips.tracked.style }}">{{ tips.tracked.text }}</span></span></span>
+    </div>
+  </div>
+
+  <div style="border-top:2px solid color-mix(in srgb, var(--color-accent-500) 45%, transparent);background:var(--color-neutral-900)">
+    <div style="max-width:1240px;margin:0 auto;padding:14px 32px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between">
+      <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+        <span style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-500)">RECOMMENDATION</span>
+        <span style="font:500 17px/1.2 var(--font-heading);color:var(--color-neutral-100)">Conditional approval recommended</span>
+      </div>
+      <button type="button" onClick="{{ goBoard }}" style="border:1px solid color-mix(in srgb, var(--color-accent-500) 60%, transparent);background:transparent;color:var(--color-accent-400);font:600 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;padding:9px 14px;cursor:pointer" style-hover="background:color-mix(in srgb, var(--color-accent-500) 14%, transparent);color:var(--color-neutral-100);border:1px solid var(--color-accent-500)">BOARD DECISION →</button>
+    </div>
+  </div>
+</header>
+
+<section style="max-width:1240px;margin:0 auto;padding:40px 32px 8px">
+  <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:20px">
+    <div style="display:flex;align-items:baseline;gap:14px">
+      <span style="font:600 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.2em;color:var(--color-accent-500)">01 / EVENT</span>
+      <span style="font:400 12.5px/1.4 var(--font-body);color:var(--color-neutral-500)">VH-042 · Level 2 ADAS · 23:41 local · light rain</span>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button type="button" onClick="{{ togglePlay }}" style="border:1px solid color-mix(in srgb, var(--color-accent-500) 55%, transparent);background:transparent;color:var(--color-accent-400);font:600 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;padding:9px 13px;cursor:pointer" style-hover="background:color-mix(in srgb, var(--color-accent-500) 14%, transparent);color:var(--color-neutral-100)">{{ playLabel }}</button>
+      <button type="button" onClick="{{ replay }}" style="border:1px solid color-mix(in srgb, var(--color-neutral-200) 35%, transparent);background:transparent;color:var(--color-neutral-100);font:600 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;padding:9px 13px;cursor:pointer" style-hover="background:color-mix(in srgb, var(--color-neutral-100) 10%, transparent)">REPLAY</button>
+      <button type="button" onClick="{{ skip }}" style="border:1px solid color-mix(in srgb, var(--color-neutral-200) 35%, transparent);background:transparent;color:var(--color-neutral-500);font:600 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;padding:9px 13px;cursor:pointer" style-hover="background:color-mix(in srgb, var(--color-neutral-100) 10%, transparent);color:var(--color-neutral-100)">SKIP</button>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+    <input type="range" min="0" max="{{ scrubMax }}" step="0.02" value="{{ scrubT }}" onChange="{{ seek }}" aria-label="Scrub incident timeline" style="width:100%;accent-color:var(--color-accent-500);cursor:pointer">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px">
+      <sc-for list="{{ stages }}" as="sg" hint-placeholder-count="5">
+        <span style="{{ sg.st }}">{{ sg.label }}</span>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:0;border:1px solid color-mix(in srgb, var(--color-neutral-200) 20%, transparent);background:color-mix(in srgb, var(--color-neutral-900) 86%, #000)">
+    <div style="border-right:1px solid color-mix(in srgb, var(--color-neutral-200) 20%, transparent);min-width:0">
+      <div style="position:relative">{{ scene }}</div>
+      <div style="border-top:1px solid color-mix(in srgb, var(--color-neutral-200) 20%, transparent)">{{ chart }}</div>
+      <div style="border-top:1px solid color-mix(in srgb, var(--color-neutral-200) 20%, transparent);padding:14px 20px;display:flex;align-items:center;gap:12px;min-height:56px">
+        <span style="width:7px;height:7px;flex:none;background:var(--color-accent-500)"></span>
+        <span style="font:600 13.5px/1.35 var(--font-body);color:var(--color-neutral-100)">{{ caption }}</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column">
+      <div style="padding:16px 20px 14px;border-bottom:1px solid color-mix(in srgb, var(--color-neutral-200) 20%, transparent)">
+        <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-500);margin-bottom:8px">RISK SIGNAL</div>
+        <div style="font:500 16px/1.25 var(--font-heading);color:var(--color-accent-500)">AEB threshold not reached</div>
+        <div style="font:400 12px/1.45 var(--font-body);color:var(--color-neutral-500);margin-top:6px">Detection confidence fell below the 50% arming threshold; automatic braking did not engage.</div>
+      </div>
+      <div style="padding:16px 20px 14px;border-bottom:1px solid color-mix(in srgb, var(--color-neutral-200) 20%, transparent)">
+        <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-500);margin-bottom:8px">EVIDENCE STATUS</div>
+        <div style="font:500 16px/1.25 var(--font-heading);color:var(--color-neutral-100)">{{ missingLabel }}</div>
+        <div style="font:400 12px/1.45 var(--font-body);color:var(--color-neutral-500);margin-top:6px">Traceability coverage {{ coveragePct }}% — the ODD test record and the event evidence package are outstanding.</div>
+      </div>
+      <div style="padding:16px 20px">
+        <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-500);margin-bottom:8px">ACCOUNTABLE NEXT STEP</div>
+        <div style="font:500 16px/1.25 var(--font-heading);color:var(--color-neutral-100)">Independent safety review</div>
+        <div style="font:400 12px/1.45 var(--font-body);color:var(--color-neutral-500);margin-top:6px">Independent Safety Team to re-run night/rain ODD validation before board sign-off.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="border:1px solid color-mix(in srgb, var(--color-neutral-200) 20%, transparent);border-top:0;padding:22px 26px;background:color-mix(in srgb, var(--color-neutral-900) 86%, #000)">
+    <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-500);margin-bottom:10px">NARRATIVE · SYNTHETIC RECONSTRUCTION</div>
+    <p style="margin:0;font:400 14.5px/1.7 var(--font-body);color:var(--color-neutral-300);max-width:92ch">At 23:41 local time, VH-042 approached a marked crosswalk in light rain. The onboard camera detector briefly reported pedestrian detection confidence<span style="position:relative;display:inline-flex;vertical-align:middle;margin:0 3px"><button type="button" onClick="{{ tips.confidence.toggle }}" aria-label="More info: detection confidence" style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border:1px solid var(--color-neutral-500);border-radius:50%;font:600 9px/1 ui-monospace,Menlo,monospace;color:var(--color-neutral-400);cursor:pointer;background:transparent;padding:0">i</button><span role="tooltip" style="{{ tips.confidence.style }}">{{ tips.confidence.text }}</span></span>of 92%, then fell to 31% within roughly 400 ms as glare and rain degraded the signal. The AEB arming threshold<span style="position:relative;display:inline-flex;vertical-align:middle;margin:0 3px"><button type="button" onClick="{{ tips.aeb.toggle }}" aria-label="More info: AEB arming threshold" style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border:1px solid var(--color-neutral-500);border-radius:50%;font:600 9px/1 ui-monospace,Menlo,monospace;color:var(--color-neutral-400);cursor:pointer;background:transparent;padding:0">i</button><span role="tooltip" style="{{ tips.aeb.style }}">{{ tips.aeb.text }}</span></span>of 50% was not reached, so automatic braking did not engage. The driver intervened manually and the vehicle stopped short of the crosswalk. No contact occurred — the event is logged as a near-miss and routed to governance review.</p>
+  </div>
+</section>
+
+<nav style="max-width:1240px;margin:0 auto;padding:40px 32px 0">
+  <div style="display:flex;flex-wrap:wrap;gap:26px;border-bottom:2px solid color-mix(in srgb, var(--color-neutral-200) 40%, transparent)">
+    <sc-for list="{{ sections }}" as="s" hint-placeholder-count="4">
+      <button type="button" onClick="{{ s.select }}" style="{{ s.st }}">
+        <span style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;opacity:.6">{{ s.num }}</span>
+        <span style="font:500 15px/1.2 var(--font-heading)">{{ s.label }}</span>
+      </button>
+    </sc-for>
+  </div>
+</nav>
+
+<main style="max-width:1240px;margin:0 auto;padding:32px 32px 80px">
+
+<sc-if value="{{ isPerf }}" hint-placeholder-val="{{ true }}">
+  <div style="display:grid;grid-template-columns:minmax(0,1fr);gap:28px">
+    <div style="background:var(--color-neutral-100);color:var(--color-neutral-900);padding:26px 28px;border-top:2px solid var(--color-accent)">
+      <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">INCIDENT SIGNAL · SINGLE EVENT</div>
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:34px;margin-top:16px">
+        <div style="display:flex;align-items:baseline;gap:14px">
+          <span style="font:500 clamp(40px,6vw,64px)/1 var(--font-heading);letter-spacing:-.03em">92%</span>
+          <span style="font:400 26px/1 var(--font-body);color:var(--color-neutral-500)">→</span>
+          <span style="font:500 clamp(40px,6vw,64px)/1 var(--font-heading);letter-spacing:-.03em;color:var(--color-accent)">31%</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:2px;padding-bottom:6px">
+          <span style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">ELAPSED</span>
+          <span style="font:500 20px/1.2 var(--font-heading)">~400 ms</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:2px;padding-bottom:6px">
+          <span style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">MEASURE</span>
+          <span style="font:500 20px/1.2 var(--font-heading)">Live detection confidence</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:2px;padding-bottom:6px">
+          <span style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">AEB THRESHOLD</span>
+          <span style="font:500 20px/1.2 var(--font-heading)">&gt; 50%</span>
+        </div>
+      </div>
+      <p style="margin:20px 0 0;font:400 13.5px/1.6 var(--font-body);color:var(--color-neutral-800);max-width:78ch">One camera pedestrian detector, one frame sequence. This is the incident's own confidence trace — it is not a precision or recall figure and must not be read as one.</p>
+    </div>
+
+    <div style="background:var(--color-neutral-100);color:var(--color-neutral-900);padding:26px 28px">
+      <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px">
+        <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">OFFLINE VALIDATION · PEDESTRIAN DETECTOR MDL-PED-09</div>
+        <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">SEPARATE MEASURE FROM THE INCIDENT SIGNAL</div>
+      </div>
+      <table style="width:100%;border-collapse:collapse;margin-top:18px">
+        <thead>
+          <tr>
+            <th style="text-align:left;font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;color:var(--color-neutral-600);padding:0 12px 10px 0;border-bottom:2px solid color-mix(in srgb, var(--color-neutral-900) 40%, transparent)">CONDITION</th>
+            <th style="text-align:right;font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;color:var(--color-neutral-600);padding:0 12px 10px;border-bottom:2px solid color-mix(in srgb, var(--color-neutral-900) 40%, transparent)">PRECISION<span style="position:relative;display:inline-flex;vertical-align:middle;margin-left:4px"><button type="button" onClick="{{ tips.precision.toggle }}" aria-label="More info: precision" style="display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border:1px solid var(--color-neutral-600);border-radius:50%;font:600 8px/1 ui-monospace,Menlo,monospace;color:var(--color-neutral-600);cursor:pointer;background:transparent;padding:0;text-transform:none">i</button><span role="tooltip" style="{{ tips.precision.style }}">{{ tips.precision.text }}</span></span></th>
+            <th style="text-align:right;font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;color:var(--color-neutral-600);padding:0 12px 10px;border-bottom:2px solid color-mix(in srgb, var(--color-neutral-900) 40%, transparent)">RECALL<span style="position:relative;display:inline-flex;vertical-align:middle;margin-left:4px"><button type="button" onClick="{{ tips.recall.toggle }}" aria-label="More info: recall" style="display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border:1px solid var(--color-neutral-600);border-radius:50%;font:600 8px/1 ui-monospace,Menlo,monospace;color:var(--color-neutral-600);cursor:pointer;background:transparent;padding:0;text-transform:none">i</button><span role="tooltip" style="{{ tips.recall.style }}">{{ tips.recall.text }}</span></span></th>
+            <th style="text-align:left;font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;color:var(--color-neutral-600);padding:0 0 10px 12px;border-bottom:2px solid color-mix(in srgb, var(--color-neutral-900) 40%, transparent)">NOTE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <sc-for list="{{ validation }}" as="v" hint-placeholder-count="4">
+            <tr>
+              <td style="{{ v.tdName }}">{{ v.cond }}</td>
+              <td style="{{ v.tdNum }}">{{ v.precision }}</td>
+              <td style="{{ v.tdNum }}">{{ v.recall }}</td>
+              <td style="{{ v.tdNote }}">{{ v.note }}</td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+      <p style="margin:18px 0 0;font:400 13.5px/1.6 var(--font-body);color:var(--color-neutral-800);max-width:78ch">Offline rates contextualise the incident by showing where the detector is weakest; they do not recreate the event.</p>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isSafety }}">
+  <div style="display:flex;flex-direction:column;gap:28px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;border:1px solid color-mix(in srgb, var(--color-neutral-200) 20%, transparent)">
+      <div style="padding:26px 28px;border-right:1px solid color-mix(in srgb, var(--color-neutral-200) 20%, transparent)">
+        <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-accent-500)">APPLIES HERE</div>
+        <h3 style="margin:12px 0 0;font:500 24px/1.15 var(--font-heading);color:var(--color-neutral-100);letter-spacing:-.02em">ISO 21448 / SOTIF<span style="position:relative;display:inline-flex;vertical-align:middle;margin-left:8px"><button type="button" onClick="{{ tips.sotif.toggle }}" aria-label="More info: ISO 21448 SOTIF" style="display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border:1px solid var(--color-neutral-500);border-radius:50%;font:600 9px/1 ui-monospace,Menlo,monospace;color:var(--color-neutral-400);cursor:pointer;background:transparent;padding:0">i</button><span role="tooltip" style="{{ tips.sotif.style }}">{{ tips.sotif.text }}</span></span></h3>
+        <p style="margin:12px 0 0;font:400 14px/1.6 var(--font-body);color:var(--color-neutral-400)">The intended function may be insufficient in a foreseeable difficult condition. Night rain with glare is inside the operating envelope and the detector performed as built — the function, not the part, is the concern.</p>
+      </div>
+      <div style="padding:26px 28px">
+        <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-500)">NOT ESTABLISHED</div>
+        <h3 style="margin:12px 0 0;font:500 24px/1.15 var(--font-heading);color:var(--color-neutral-500);letter-spacing:-.02em">ISO 26262<span style="position:relative;display:inline-flex;vertical-align:middle;margin-left:8px"><button type="button" onClick="{{ tips.malfunction.toggle }}" aria-label="More info: ISO 26262" style="display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border:1px solid var(--color-neutral-600);border-radius:50%;font:600 9px/1 ui-monospace,Menlo,monospace;color:var(--color-neutral-500);cursor:pointer;background:transparent;padding:0">i</button><span role="tooltip" style="{{ tips.malfunction.style }}">{{ tips.malfunction.text }}</span></span></h3>
+        <p style="margin:12px 0 0;font:400 14px/1.6 var(--font-body);color:var(--color-neutral-600)">Applies when there is evidence of a malfunction. No fault code, sensor failure, or spec deviation has been recorded for VH-042. Reclassification depends on the missing test and evidence records.</p>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid color-mix(in srgb, var(--color-neutral-200) 20%, transparent);padding-top:14px;font:400 12px/1.5 var(--font-body);color:var(--color-neutral-500)">This is a simplified teaching view, not a safety case or certification decision.</div>
+
+    <div style="background:var(--color-neutral-100);color:var(--color-neutral-900);padding:26px 28px">
+      <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">HAZARD CLASSIFICATION · SEVERITY / EXPOSURE / CONTROLLABILITY</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;margin-top:20px">
+        <sc-for list="{{ secAxes }}" as="ax" hint-placeholder-count="3">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span style="font:500 15px/1.2 var(--font-heading)">{{ ax.label }}</span>
+              <span style="font:400 11.5px/1.4 var(--font-body);color:var(--color-neutral-600)">{{ ax.hint }}</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:0;border:1px solid color-mix(in srgb, var(--color-neutral-900) 35%, transparent)">
+              <sc-for list="{{ ax.opts }}" as="o" hint-placeholder-count="3">
+                <button type="button" onClick="{{ o.select }}" title="{{ o.title }}" style="{{ o.st }}">{{ o.code }}</button>
+              </sc-for>
+            </div>
+            <span style="font:400 12px/1.45 var(--font-body);color:var(--color-neutral-800)">{{ ax.chosen }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:26px;border-top:2px solid color-mix(in srgb, var(--color-neutral-900) 40%, transparent);padding-top:18px;display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between">
+        <div>
+          <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">PROVISIONAL REVIEW POSTURE</div>
+          <div style="font:500 clamp(24px,3.4vw,34px)/1.15 var(--font-heading);letter-spacing:-.02em;margin-top:8px;color:{{ postureColor }}">{{ posture }}</div>
+          <div style="font:400 13px/1.55 var(--font-body);color:var(--color-neutral-800);margin-top:8px;max-width:62ch">{{ postureNote }}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+          <span style="font:500 13px/1 ui-monospace,Menlo,monospace;letter-spacing:.1em;background:var(--color-accent);color:var(--color-neutral-900);padding:8px 12px;border-radius:var(--radius-md)">{{ asilLabel }}</span>
+          <span style="font:400 10.5px/1.4 var(--font-body);color:var(--color-neutral-600);text-align:right;max-width:20ch">Illustrative combined rating — not a certified determination.</span>
+          <span style="font:600 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;color:var(--color-neutral-600)">{{ secCode }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isEvidence }}">
+  <div style="display:flex;flex-direction:column;gap:26px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px">
+      <div>
+        <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-500)">TRACEABILITY CHAIN</div>
+        <h3 style="margin:10px 0 0;font:500 26px/1.15 var(--font-heading);color:var(--color-neutral-100);letter-spacing:-.02em">Hazard to decision, with owners</h3>
+      </div>
+      <div style="display:flex;gap:0;border:1px solid color-mix(in srgb, var(--color-neutral-200) 20%, transparent)">
+        <div style="padding:12px 18px;border-right:1px solid color-mix(in srgb, var(--color-neutral-200) 20%, transparent)">
+          <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-500)">COVERAGE</div>
+          <div style="font:500 24px/1.15 var(--font-heading);color:{{ coverageColor }};margin-top:6px">{{ coveragePct }}%</div>
+        </div>
+        <div style="padding:12px 18px">
+          <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-500)">RECORDS</div>
+          <div style="font:500 24px/1.15 var(--font-heading);color:var(--color-neutral-100);margin-top:6px">{{ receivedCount }}/{{ totalCount }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;justify-content:space-between;font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;color:var(--color-neutral-500)">
+        <span>TRACEABILITY</span>
+        <span>{{ receivedCount }} of {{ totalCount }} · {{ coveragePct }}% complete</span>
+      </div>
+      <div style="height:6px;background:color-mix(in srgb, var(--color-neutral-200) 18%, transparent)">
+        <div style="height:100%;width:{{ coveragePct }}%;background:{{ coverageColor }}"></div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:0;overflow-x:auto;border:1px solid color-mix(in srgb, var(--color-neutral-200) 20%, transparent)">
+      <sc-for list="{{ records }}" as="r" hint-placeholder-count="7">
+        <button type="button" onClick="{{ r.select }}" style="{{ r.st }}">
+          <span style="font:600 9px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;color:var(--color-neutral-500)">{{ r.step }}</span>
+          <span style="font:500 14px/1.2 var(--font-heading);color:var(--color-neutral-100)">{{ r.node }}</span>
+          <span style="font:600 10.5px/1 ui-monospace,Menlo,monospace;color:var(--color-neutral-400)">{{ r.id }}</span>
+          <span style="display:flex;align-items:center;gap:6px;margin-top:2px">
+            <span style="width:6px;height:6px;flex:none;background:{{ r.dot }}"></span>
+            <span style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;color:{{ r.dot }}">{{ r.statusLabel }}</span>
+          </span>
+          <span style="font:400 10.5px/1.35 var(--font-body);color:var(--color-neutral-600);margin-top:4px">{{ r.owner }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;font:600 10px/1.6 ui-monospace,Menlo,monospace;letter-spacing:.14em;color:var(--color-neutral-500)">
+      <span>REQUIREMENTS TEAM</span><span style="color:var(--color-accent-500)">→</span>
+      <span>ML DEVELOPMENT TEAM</span><span style="color:var(--color-accent-500)">→</span>
+      <span>TEST &amp; VALIDATION TEAM</span><span style="color:var(--color-accent-500)">→</span>
+      <span>INDEPENDENT SAFETY TEAM</span><span style="color:var(--color-accent-500)">→</span>
+      <span>GOVERNANCE BOARD</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:20px;align-items:start">
+    <div style="background:var(--color-neutral-100);color:var(--color-neutral-900);padding:26px 28px;border-top:2px solid {{ selDot }}">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:18px">
+        <div>
+          <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">EVIDENCE INSPECTOR · {{ selId }}</div>
+          <h4 style="margin:10px 0 0;font:500 clamp(22px,3vw,30px)/1.15 var(--font-heading);letter-spacing:-.02em;max-width:26ch">{{ selTitle }}</h4>
+        </div>
+        <button type="button" onClick="{{ toggleSel }}" style="border:1px solid color-mix(in srgb, var(--color-neutral-900) 40%, transparent);background:transparent;color:var(--color-neutral-900);font:600 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;padding:10px 14px;cursor:pointer" style-hover="background:color-mix(in srgb, var(--color-neutral-900) 08%, transparent)">{{ toggleLabel }}</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0;margin-top:22px;border-top:2px solid color-mix(in srgb, var(--color-neutral-900) 40%, transparent);overflow:hidden;margin-left:-1px">
+        <sc-for list="{{ selFields }}" as="f" hint-placeholder-count="5">
+          <div style="padding:16px 18px;border-left:1px solid color-mix(in srgb, var(--color-neutral-900) 18%, transparent)">
+            <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">{{ f.k }}</div>
+            <div style="font:600 13.5px/1.4 var(--font-body);margin-top:7px;color:{{ f.c }}">{{ f.v }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <p style="margin:20px 0 0;font:400 14px/1.65 var(--font-body);color:var(--color-neutral-800);max-width:82ch">{{ selBody }}</p>
+
+      <sc-if value="{{ selHasDetail }}">
+        <div style="margin-top:20px;border-top:1px solid color-mix(in srgb, var(--color-neutral-900) 20%, transparent);padding-top:18px">
+          <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">RECORD CONTENTS</div>
+          <ul style="margin:12px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:0">
+            <sc-for list="{{ selDetail }}" as="d" hint-placeholder-count="4">
+              <li style="display:grid;grid-template-columns:minmax(120px,190px) minmax(0,1fr);gap:18px;padding:11px 0;border-bottom:1px solid color-mix(in srgb, var(--color-neutral-900) 14%, transparent)">
+                <span style="font:600 11px/1.4 ui-monospace,Menlo,monospace;letter-spacing:.06em;color:var(--color-neutral-600)">{{ d.k }}</span>
+                <span style="font:400 13.5px/1.5 var(--font-body);color:var(--color-neutral-900)">{{ d.v }}</span>
+              </li>
+            </sc-for>
+          </ul>
+        </div>
+      </sc-if>
+
+      <div style="margin-top:22px;border-top:2px solid {{ selDot }};padding-top:16px">
+        <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">CONCRETE NEXT STEP</div>
+        <div style="font:500 17px/1.35 var(--font-heading);margin-top:8px;max-width:70ch">{{ selNext }}</div>
+      </div>
+    </div>
+
+    <div style="border:1px solid color-mix(in srgb, var(--color-accent-500) 40%, transparent);padding:20px 22px;display:flex;flex-direction:column;gap:12px">
+      <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-accent-400)">OPEN GAPS</div>
+      <div style="font:400 12px/1.5 var(--font-body);color:var(--color-neutral-400)">{{ gapsNote }}</div>
+      <sc-for list="{{ openGaps }}" as="g" hint-placeholder-count="2">
+        <div style="border-top:1px solid color-mix(in srgb, var(--color-accent-500) 25%, transparent);padding-top:10px">
+          <div style="font:600 10.5px/1 ui-monospace,Menlo,monospace;color:var(--color-accent-400)">{{ g.id }} — {{ g.node }}</div>
+          <div style="font:400 11.5px/1.4 var(--font-body);color:var(--color-neutral-500);margin-top:4px">{{ g.title }}</div>
+        </div>
+      </sc-for>
+    </div>
+    </div>
+
+    <div style="background:var(--color-neutral-100);color:var(--color-neutral-900);padding:24px 26px">
+      <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">GOVERNANCE ACTIONS · ANNUAL REVIEW &amp; DELIVERABLE TRACKING</div>
+      <table style="width:100%;border-collapse:collapse;margin-top:16px">
+        <thead>
+          <tr>
+            <th style="text-align:left;font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;color:var(--color-neutral-600);padding:0 12px 10px 0;border-bottom:2px solid color-mix(in srgb, var(--color-neutral-900) 40%, transparent)">ACTION</th>
+            <th style="text-align:left;font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;color:var(--color-neutral-600);padding:0 12px 10px;border-bottom:2px solid color-mix(in srgb, var(--color-neutral-900) 40%, transparent)">OWNER</th>
+            <th style="text-align:left;font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;color:var(--color-neutral-600);padding:0 12px 10px;border-bottom:2px solid color-mix(in srgb, var(--color-neutral-900) 40%, transparent)">DUE</th>
+            <th style="text-align:left;font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;color:var(--color-neutral-600);padding:0 0 10px 12px;border-bottom:2px solid color-mix(in srgb, var(--color-neutral-900) 40%, transparent)">STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <sc-for list="{{ govActions }}" as="ga" hint-placeholder-count="4">
+            <tr>
+              <td style="padding:12px 12px 12px 0;border-bottom:1px solid color-mix(in srgb, var(--color-neutral-900) 16%, transparent);font:400 13.5px/1.4 var(--font-body);color:var(--color-neutral-900)">{{ ga.action }}</td>
+              <td style="padding:12px;border-bottom:1px solid color-mix(in srgb, var(--color-neutral-900) 16%, transparent);font:400 12.5px/1.4 var(--font-body);color:var(--color-neutral-700)">{{ ga.owner }}</td>
+              <td style="padding:12px;border-bottom:1px solid color-mix(in srgb, var(--color-neutral-900) 16%, transparent);font:600 12.5px/1.4 ui-monospace,Menlo,monospace;color:var(--color-neutral-700)">{{ ga.due }}</td>
+              <td style="padding:12px 0 12px 12px;border-bottom:1px solid color-mix(in srgb, var(--color-neutral-900) 16%, transparent);font:600 11px/1 ui-monospace,Menlo,monospace;letter-spacing:.1em;color:{{ ga.color }}">{{ ga.status }}</td>
+            </tr>
+          </sc-for>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="border:1px solid color-mix(in srgb, var(--color-neutral-200) 20%, transparent);padding:22px 26px;display:flex;flex-wrap:wrap;gap:28px">
+      <div style="display:flex;flex-direction:column;gap:3px">
+        <span style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;color:var(--color-neutral-500)">SUPPLIER-PROVIDED AI<span style="position:relative;display:inline-flex;vertical-align:middle;margin-left:4px"><button type="button" onClick="{{ tips.supplierProvided.toggle }}" aria-label="More info: supplier-provided AI" style="display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border:1px solid var(--color-neutral-600);border-radius:50%;font:600 8px/1 ui-monospace,Menlo,monospace;color:var(--color-neutral-500);cursor:pointer;background:transparent;padding:0;text-transform:none">i</button><span role="tooltip" style="{{ tips.supplierProvided.style }}">{{ tips.supplierProvided.text }}</span></span></span>
+        <span style="font:600 13px/1.3 var(--font-body);color:var(--color-neutral-100)">MDL-PED-09 — OptiSense GmbH (Tier 1)</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:3px">
+        <span style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;color:var(--color-neutral-500)">SUPPLIER COMPLIANCE STATUS<span style="position:relative;display:inline-flex;vertical-align:middle;margin-left:4px"><button type="button" onClick="{{ tips.supplierStatus.toggle }}" aria-label="More info: supplier compliance status" style="display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border:1px solid var(--color-neutral-600);border-radius:50%;font:600 8px/1 ui-monospace,Menlo,monospace;color:var(--color-neutral-500);cursor:pointer;background:transparent;padding:0;text-transform:none">i</button><span role="tooltip" style="{{ tips.supplierStatus.style }}">{{ tips.supplierStatus.text }}</span></span></span>
+        <span style="font:600 13px/1.3 var(--font-body);color:var(--color-accent-400)">Attestation on file — night/rain limitation pending supplier update</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:3px">
+        <span style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;color:var(--color-neutral-500)">NEXT ANNUAL REVIEW</span>
+        <span style="font:600 13px/1.3 var(--font-body);color:var(--color-neutral-100)">15 Jun 2026 · AAD AI Inventory</span>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isBoard }}">
+  <div id="board-decision" style="display:flex;flex-direction:column;gap:26px;scroll-margin-top:24px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px">
+      <div>
+        <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-500)">GOVERNANCE BOARD · 24 APR</div>
+        <h3 style="margin:10px 0 0;font:500 26px/1.15 var(--font-heading);color:var(--color-neutral-100);letter-spacing:-.02em">Decision under uncertainty</h3>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
+        <div style="font:400 12px/1.5 var(--font-body);color:var(--color-neutral-500);max-width:44ch;text-align:right">Coverage stands at {{ coveragePct }}% with {{ missingLabel }}. Select a decision to read the rationale it commits the board to.</div>
+        <button type="button" onClick="{{ exportArtefact }}" style="border:1px solid color-mix(in srgb, var(--color-accent-500) 55%, transparent);background:transparent;color:var(--color-accent-400);font:600 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;padding:9px 14px;cursor:pointer" style-hover="background:color-mix(in srgb, var(--color-accent-500) 14%, transparent);color:var(--color-neutral-100)">↓ EXPORT ARTEFACT (PDF)</button>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px">
+      <sc-for list="{{ decisions }}" as="d" hint-placeholder-count="3">
+        <button type="button" onClick="{{ d.select }}" style="{{ d.st }}">
+          <span style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+            <span style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:{{ d.kickerColor }}">{{ d.kicker }}</span>
+            <span style="width:9px;height:9px;flex:none;background:{{ d.mark }}"></span>
+          </span>
+          <span style="font:500 22px/1.15 var(--font-heading);letter-spacing:-.02em;color:{{ d.titleColor }};margin-top:14px">{{ d.label }}</span>
+          <span style="font:400 12.5px/1.5 var(--font-body);color:{{ d.bodyColor }};margin-top:8px">{{ d.blurb }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="background:var(--color-neutral-100);color:var(--color-neutral-900);padding:28px 30px;border-top:2px solid var(--color-accent)">
+      <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:14px">
+        <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">BOARD RATIONALE · {{ chosenLabel }}</div>
+        <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">SYNTHETIC RECORD · NOT A REAL DETERMINATION</div>
+      </div>
+      <p style="margin:18px 0 0;font:400 15.5px/1.65 var(--font-body);color:var(--color-neutral-900);max-width:84ch">{{ rationale }}</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;margin-top:24px;border-top:2px solid color-mix(in srgb, var(--color-neutral-900) 40%, transparent);overflow:hidden;margin-left:-1px">
+        <sc-for list="{{ weights }}" as="w" hint-placeholder-count="4">
+          <div style="padding:16px 18px;border-left:1px solid color-mix(in srgb, var(--color-neutral-900) 18%, transparent)">
+            <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">{{ w.k }}</div>
+            <div style="font:400 13px/1.5 var(--font-body);margin-top:7px;color:var(--color-neutral-800)">{{ w.v }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:22px;border-top:1px solid color-mix(in srgb, var(--color-neutral-900) 20%, transparent);padding-top:16px">
+        <div style="font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-600)">CONDITIONS ON RECORD</div>
+        <ul style="margin:12px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px">
+          <sc-for list="{{ conditions }}" as="c" hint-placeholder-count="3">
+            <li style="display:grid;grid-template-columns:16px minmax(0,1fr);gap:12px;font:400 13.5px/1.5 var(--font-body);color:var(--color-neutral-900)">
+              <span style="width:7px;height:7px;background:var(--color-accent);margin-top:8px"></span>
+              <span>{{ c }}</span>
+            </li>
+          </sc-for>
+        </ul>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+</main>
+
+<footer style="border-top:2px solid color-mix(in srgb, var(--color-neutral-200) 40%, transparent)">
+  <div style="max-width:1240px;margin:0 auto;padding:22px 32px 40px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font:400 11.5px/1.6 var(--font-body);color:var(--color-neutral-600)">
+    <span>Every scenario, team, record, metric, timestamp and decision on this page is synthetic and built for demonstration.</span>
+    <span style="font:600 10px/1.6 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--color-neutral-500)">AI-SAFE / G-0417 · SYNTHETIC DEMO</span>
+  </div>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const T = { detect: 0.9, degStart: 2.4, degEnd: 2.8, brake: 3.4, stop: 5.0, flag: 5.8, end: 7.4 };
+
+const CAPTIONS = [
+  [0, "Vehicle VH-042 approaching a marked crosswalk · 48 km/h"],
+  [T.detect, "Pedestrian detected — camera confidence 92%"],
+  [T.degStart, "Oncoming glare and rain degrade the camera signal"],
+  [T.degEnd, "Confidence 31% — below the 50% AEB arming threshold"],
+  [T.brake, "AEB does not arm. Driver brakes manually."],
+  [T.stop, "Vehicle stopped short of the crosswalk. No contact."],
+  [T.flag, "Safety event detected — routed to governance review"]
+];
+
+const STAGES = [
+  [0, "1 · APPROACH"],
+  [T.detect, "2 · DETECTION"],
+  [T.degStart, "3 · DEGRADE"],
+  [T.degEnd, "4 · MISS"],
+  [T.stop, "5 · FREEZE"]
+];
+
+function speedAt(t) {
+  if (t <= T.brake) return 48;
+  const p = Math.min((t - T.brake) / (T.stop - T.brake), 1);
+  return 48 * (1 - p);
+}
+
+const VALIDATION = [
+  { cond: "Daylight / clear", precision: "98.1%", recall: "96.8%", note: "" },
+  { cond: "Night / clear", precision: "94.4%", recall: "89.7%", note: "" },
+  { cond: "Daylight / rain", precision: "91.6%", recall: "85.2%", note: "" },
+  { cond: "Night / rain", precision: "83.2%", recall: "71.4%", note: "Weakest condition — matches incident ODD", weak: true }
+];
+
+const AXES = [
+  { key: "S", label: "Severity", hint: "Harm if the hazard is realised",
+    opts: [["S0", "No injuries"], ["S1", "Light to moderate injuries"], ["S2", "Severe, survival probable"], ["S3", "Life-threatening or fatal"]] },
+  { key: "E", label: "Exposure", hint: "How often the condition occurs",
+    opts: [["E1", "Very low probability"], ["E2", "Low probability"], ["E3", "Medium probability"], ["E4", "High probability"]] },
+  { key: "C", label: "Controllability", hint: "Can the driver or others avoid harm",
+    opts: [["C1", "Simply controllable"], ["C2", "Normally controllable"], ["C3", "Difficult to control"]] }
+];
+
+const RECORDS = [
+  { id: "HZD-004", node: "Hazard", step: "01", status: "received",
+    title: "Pedestrian in marked crosswalk not detected in degraded light",
+    type: "Hazard entry", owner: "Requirements Team", source: "Hazard & risk analysis, ODD-Night rev 4",
+    downstream: "Safety Goal SG-AEB-02",
+    body: "Registered as a foreseeable functional insufficiency: a pedestrian inside a marked crosswalk may go undetected when illumination is low and precipitation scatters the scene. Classified under SOTIF because no component fault is required for the hazard to occur.",
+    next: "Requirements Team to restate the hazard with the measured night/rain confidence envelope from this event." },
+  { id: "SG-AEB-02", node: "Safety Goal", step: "02", status: "received",
+    title: "Automatic braking shall mitigate crosswalk pedestrian conflicts",
+    type: "Safety goal", owner: "Requirements Team", source: "Safety concept SC-ADAS-2, clause 4.2",
+    downstream: "Requirement REQ-AEB-017",
+    body: "Sets the mitigation intent for crosswalk conflicts: detect, warn, and brake early enough to avoid contact at urban speeds within the declared operating design domain.",
+    next: "Confirm the goal still holds once night/rain performance is re-measured; amend if the ODD must be narrowed." },
+  { id: "REQ-AEB-017", node: "Requirement", step: "03", status: "received",
+    title: "AEB arming threshold for vulnerable road users",
+    type: "Functional safety requirement", owner: "Requirements Team", source: "Requirement baseline R-2026.1",
+    downstream: "Model MDL-PED-09",
+    body: "The requirement that the event turns on. It fixes a single scalar gate — 50% detection confidence — as the condition for automatic braking, and this event fell on the wrong side of that gate while the pedestrian was genuinely present.",
+    detail: [
+      ["Statement", "AEB shall arm when pedestrian detection confidence exceeds 50% for at least two consecutive frames within the braking corridor."],
+      ["Rationale", "The threshold trades false-activation risk on highways against missed activation in urban crosswalks."],
+      ["Verification", "TST-ODD-12, night/rain sweep across 240 synthetic crosswalk approaches."],
+      ["Open question", "The threshold is a fixed scalar; it does not adapt to illumination or precipitation state."],
+      ["Change history", "rev 3, 12 Feb — threshold raised from 45% to 50% after highway false-activation findings."]
+    ],
+    next: "Requirements Team to open a change request evaluating a condition-adaptive threshold, with ML Development Team assessing false-activation cost." },
+  { id: "MDL-PED-09", node: "Model", step: "04", status: "received",
+    title: "Camera pedestrian detector, release 09",
+    type: "Model release record", owner: "ML Development Team", source: "Model registry, build 2026.03.11",
+    downstream: "Test TST-ODD-12",
+    body: "Released with known degradation in night/rain conditions (recall 71.4%). No malfunction is indicated for this event: the detector produced the confidence sequence the release notes predict for this illumination and precipitation state.",
+    next: "ML Development Team to supply frame-level confidence logs for the 400 ms window and the matching training-data coverage summary." },
+  { id: "TST-ODD-12", node: "Test", step: "05", status: "missing",
+    title: "Night / rain ODD validation sweep",
+    type: "Validation test record", owner: "Test & Validation Team", source: "Not yet delivered to the case file",
+    downstream: "Evidence EVD-0417",
+    body: "The record that would show whether this behaviour was already characterised before release. Without it the board cannot tell a known, accepted limitation from an untested condition.",
+    next: "Test & Validation Team to deliver the sweep results, or state on record that the condition was never validated." },
+  { id: "EVD-0417", node: "Evidence", step: "06", status: "missing",
+    title: "Event evidence package for G-0417",
+    type: "Evidence package", owner: "Independent Safety Team", source: "Awaiting vehicle log extraction",
+    downstream: "Decision GOV-0417",
+    body: "The heart of the evidence gap. Everything the board would need to reconstruct the 400 ms confidence collapse independently of the ML team's own account is inside this package, and none of it has arrived.",
+    detail: [
+      ["Expected contents", "Front camera footage, frame-level confidence trace, radar returns, brake pedal and AEB arming log, wiper and light-sensor state."],
+      ["Why it matters", "It is the only way to confirm the 92% to 31% sequence and the pedestrian's true position independently."],
+      ["Blocker", "Log extraction queued behind fleet telemetry retention window closing 30 Apr."],
+      ["Risk if absent", "The board would decide on a single self-reported confidence trace with no independent corroboration."],
+      ["Escalation", "Independent Safety Team has flagged the retention deadline to the Safety Council."]
+    ],
+    next: "Independent Safety Team to extract vehicle logs before the 30 Apr retention cutoff and file the package with a chain-of-custody note." },
+  { id: "GOV-0417", node: "Decision", step: "07", status: "received",
+    title: "Governance review record for case G-0417",
+    type: "Decision record", owner: "Governance Board", source: "Case file G-0417, opened 18 Apr",
+    downstream: "Fleet deployment scope",
+    body: "The open decision record. It carries the recommendation, the conditions, and the dissent, and it stays open until the outstanding records are closed.",
+    next: "Governance Board to record the conditional decision and set the re-review date against the outstanding evidence." }
+];
+
+const GOV_ACTIONS = [
+  { action: "Extract vehicle logs and file EVD-0417", owner: "Independent Safety Team", due: "30 Apr 2026", status: "OPEN", color: "var(--color-accent-700)" },
+  { action: "Deliver TST-ODD-12 night/rain sweep", owner: "Test & Validation Team", due: "22 Apr 2026", status: "OPEN", color: "var(--color-accent-700)" },
+  { action: "Open change request on fixed 50% arming threshold", owner: "Requirements Team", due: "28 Apr 2026", status: "OPEN", color: "var(--color-accent-700)" },
+  { action: "Supplier attestation update — OptiSense GmbH", owner: "Governance Board", due: "12 May 2026", status: "PENDING", color: "var(--color-neutral-600)" },
+  { action: "Annual AI Inventory review — INV-0417", owner: "Governance Board", due: "15 Jun 2026", status: "SCHEDULED", color: "var(--color-neutral-600)" }
+];
+
+const DECISIONS = [
+  { key: "approve", label: "Approve", kicker: "OPTION A", blurb: "Release the current build to full fleet scope with standard monitoring." },
+  { key: "conditions", label: "Approve with Conditions", kicker: "OPTION B · RECOMMENDED", blurb: "Constrained deployment while the evidence gap is closed on a fixed clock." },
+  { key: "block", label: "Block", kicker: "OPTION C", blurb: "Withhold the release until night/rain performance is re-validated in full." }
+];
+
+const RATIONALE = {
+  approve: {
+    text: "Approving now accepts an unquantified residual risk. The offline record shows the detector is weakest in exactly the condition this event occurred in — night and rain, recall 71.4% — and the two records that would tell the board whether that weakness was known and accepted before release are still outstanding. Nothing in the file indicates a malfunction, and the driver did recover the situation, so the case for approval rests on the assumption that the behaviour is a characterised limitation. That assumption is currently untested. Choosing this path means the board is stating, on record, that it is willing to carry that uncertainty across the full fleet in order to hold the schedule.",
+    weights: [
+      ["SAFETY UNCERTAINTY", "Carried in full; night/rain recall gap remains unquantified against the incident."],
+      ["EVIDENCE GAPS", "Two records outstanding at the point of decision."],
+      ["DEPLOYMENT SCOPE", "Unrestricted — full fleet, all ODD conditions."],
+      ["SCHEDULE & COST", "No slip, no rework cost; highest exposure if the gap proves material."]
+    ],
+    conditions: ["No conditions attached — the residual risk transfers to the deploying organisation.", "Board minority position to be recorded against this option."]
+  },
+  conditions: {
+    text: "Conditional approval is the honest reading of an incomplete file. The system behaved as its release notes predict, the driver recovered the situation, and no malfunction is evidenced — so a full block would penalise a known and arguably accepted limitation. But traceability coverage is short of complete, and the missing ODD test and event evidence package are precisely the two records that separate an accepted limitation from an untested one. The board therefore narrows what is deployed rather than what is claimed: keep the release inside the conditions where validation is strong, hold the weakest condition back, and put the outstanding records on a fixed clock tied to the log retention deadline. The cost is a partial schedule slip and the operational burden of a scope restriction; the alternative is either unquantified risk in the field or discarding work that the evidence does not yet condemn.",
+    weights: [
+      ["SAFETY UNCERTAINTY", "Bounded by scope restriction rather than assumed away."],
+      ["EVIDENCE GAPS", "Closed on a fixed clock; retention deadline 30 Apr is the binding constraint."],
+      ["DEPLOYMENT SCOPE", "Night/rain crosswalk operation suspended pending re-validation."],
+      ["SCHEDULE & COST", "Partial slip on the night ODD milestone; re-validation cost accepted."]
+    ],
+    conditions: [
+      "Suspend AEB-dependent night/rain crosswalk operation until TST-ODD-12 is delivered and reviewed.",
+      "Independent Safety Team to file EVD-0417 before the 30 Apr log retention cutoff.",
+      "Requirements Team to open a change request on the fixed 50% arming threshold within ten working days.",
+      "Automatic re-review at the next board sitting; conditional approval lapses if either record is still outstanding."
+    ]
+  },
+  block: {
+    text: "Blocking treats the evidence gap as disqualifying rather than manageable. It is defensible: the weakest validated condition is the condition the event occurred in, and the board would be deciding on a single self-reported confidence trace with no independent corroboration. It is also expensive and, on the present file, arguably disproportionate — there is no evidence of malfunction, the driver retained control, and the ODD sweep may yet show the behaviour was characterised and accepted. A block stops all dependent deployment work, carries the largest schedule and cost impact of the three options, and risks conditioning teams to read governance as an obstacle rather than a control. Choosing it should follow from a judgement that the missing records cannot be closed on a credible timetable.",
+    weights: [
+      ["SAFETY UNCERTAINTY", "Eliminated from the field; nothing ships until re-validated."],
+      ["EVIDENCE GAPS", "Treated as disqualifying rather than time-boxed."],
+      ["DEPLOYMENT SCOPE", "Zero — all dependent releases held."],
+      ["SCHEDULE & COST", "Full milestone slip plus re-validation programme cost."]
+    ],
+    conditions: [
+      "Complete night/rain ODD re-validation across the full crosswalk scenario set before any re-submission.",
+      "File EVD-0417 with independent chain of custody.",
+      "Re-submission requires a revised arming-threshold analysis, not a re-run of the existing case."
+    ]
+  }
+};
+
+const POSTURES = [
+  [4, "Monitor", "Routine trend review at the safety council's regular cadence.", "var(--color-neutral-800)"],
+  [6, "Elevated review", "Safety team sign-off required before the release proceeds.", "var(--color-accent-800)"],
+  [8, "Independent safety review", "Independent Safety Team must review before board sign-off.", "var(--color-accent-700)"],
+  [10, "Deployment restriction", "Restrict the affected operating condition until re-validated.", "var(--color-accent)"]
+];
+
+function confAt(t) {
+  if (t < T.detect) return null;
+  if (t < T.degStart) return 92 - 2.5 * Math.abs(Math.sin(t * 5.5));
+  if (t < T.degEnd) {
+    const p = (t - T.degStart) / (T.degEnd - T.degStart);
+    return 92 - 61 * (p * p * (3 - 2 * p));
+  }
+  return 31 + 1.6 * Math.sin(t * 4);
+}
+
+function carAt(t) {
+  const cruise = 40 + 96 * Math.min(t, T.brake);
+  if (t <= T.brake) return cruise;
+  const p = Math.min((t - T.brake) / (T.stop - T.brake), 1);
+  return cruise + 78 * (1 - (1 - p) * (1 - p));
+}
+
+class Component extends DCLogic {
+  state = {
+    t: 0, running: true,
+    section: "performance",
+    sec: { S: "S2", E: "E4", C: "C3" },
+    statuses: RECORDS.reduce((a, r) => (a[r.id] = r.status, a), {}),
+    selected: "EVD-0417",
+    decision: "conditions",
+    tip: null
+  };
+
+  tip(id, text, light) {
+    const active = this.state.tip === id;
+    const bg = light ? "var(--color-neutral-900)" : "var(--color-neutral-100)";
+    const fg = light ? "var(--color-neutral-100)" : "var(--color-neutral-900)";
+    const bd = light ? "var(--color-neutral-600)" : "var(--color-neutral-400)";
+    return {
+      toggle: () => this.setState(s => ({ tip: s.tip === id ? null : id })),
+      text,
+      style: "position:absolute;bottom:22px;left:50%;transform:translateX(-50%);width:230px;max-width:60vw;background:" + bg + ";color:" + fg + ";border:1px solid " + bd + ";padding:10px 12px;font:400 11.5px/1.5 var(--font-body);text-align:left;z-index:30;box-shadow:var(--shadow-md);opacity:" + (active ? 1 : 0) + ";pointer-events:" + (active ? "auto" : "none") + ";transition:opacity .12s"
+    };
+  }
+
+  componentDidMount() {
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) { this.setState({ t: T.end, running: false }); return; }
+    this.start();
+  }
+  componentWillUnmount() { cancelAnimationFrame(this._raf); }
+
+  start(startT = 0) {
+    cancelAnimationFrame(this._raf);
+    const t0 = performance.now() - startT * 1000;
+    const loop = (now) => {
+      const t = Math.min((now - t0) / 1000, T.end);
+      if (t >= T.end) { this.setState({ t: T.end, running: false }); return; }
+      this.setState({ t, running: true });
+      this._raf = requestAnimationFrame(loop);
+    };
+    this._raf = requestAnimationFrame(loop);
+  }
+
+  togglePlay() {
+    if (this.state.running) { cancelAnimationFrame(this._raf); this.setState({ running: false }); }
+    else { this.start(this.state.t >= T.end ? 0 : this.state.t); }
+  }
+
+  seek(val) {
+    cancelAnimationFrame(this._raf);
+    this.setState({ t: val, running: false });
+  }
+
+  scene(t) {
+    const R = React.createElement;
+    const car = carAt(t);
+    const conf = confAt(t);
+    const detected = conf !== null;
+    const wet = t < T.degStart ? 0.22 : Math.min(0.22 + (t - T.degStart) * 1.6, 0.85);
+    const coneOp = detected ? 0.1 + (conf / 100) * 0.3 : 0.08;
+    const boxColor = conf === null ? "#7d7979" : conf >= 50 ? "#eae7e7" : "#968ae0";
+    const braking = t > T.brake && t < T.stop + 0.6;
+
+    const rain = [];
+    for (let i = 0; i < 34; i++) {
+      const x = 20 + (i * 27) % 900;
+      const y = (i * 43) % 200;
+      rain.push(R("line", { key: "r" + i, x1: x, y1: y, x2: x - 5, y2: y + 15, stroke: "#bab6b6", strokeWidth: 0.9,
+        style: { animation: `rainfall ${0.5 + (i % 5) * 0.09}s linear infinite` } }));
+    }
+
+    return R("svg", { viewBox: "0 0 940 300", width: "100%", role: "img",
+      "aria-label": "Synthetic reconstruction: vehicle approaching a crosswalk at night in rain while pedestrian detection confidence falls from 92 to 31 percent",
+      style: { display: "block", background: "#141312" } },
+      R("rect", { x: 0, y: 0, width: 940, height: 300, fill: "#141312" }),
+      R("g", { opacity: wet }, rain),
+      R("line", { x1: 0, y1: 232, x2: 940, y2: 232, stroke: "#444141", strokeWidth: 1 }),
+      R("line", { x1: 0, y1: 288, x2: 940, y2: 288, stroke: "#444141", strokeWidth: 1 }),
+      R("g", { stroke: "#605d5d", strokeWidth: 2, strokeDasharray: "18 22" },
+        R("line", { x1: 0, y1: 260, x2: 940, y2: 260 })),
+      R("g", null, [0, 1, 2, 3, 4].map(i =>
+        R("rect", { key: "cw" + i, x: 604 + i * 17, y: 234, width: 8, height: 52, fill: "#9b9797", opacity: 0.85 }))),
+      R("text", { x: 604, y: 224, fill: "#7d7979", fontSize: 10, fontFamily: "ui-monospace,Menlo,monospace", letterSpacing: 2 }, "MARKED CROSSWALK"),
+      R("g", { opacity: 0.9 },
+        R("line", { x1: 760, y1: 40, x2: 760, y2: 232, stroke: "#444141", strokeWidth: 2 }),
+        R("line", { x1: 760, y1: 40, x2: 712, y2: 40, stroke: "#444141", strokeWidth: 2 }),
+        R("circle", { cx: 706, cy: 42, r: 5, fill: t > T.degStart ? "#d2cefd" : "#605d5d" })),
+      R("g", { opacity: t > T.degStart ? Math.min((t - T.degStart) * 1.4, 0.5) : 0 },
+        R("polygon", { points: "706,42 640,232 790,232", fill: "#e7e5fe" })),
+      R("g", { transform: "translate(636,182)" },
+        R("circle", { cx: 0, cy: 0, r: 7, fill: "none", stroke: "#eae7e7", strokeWidth: 2 }),
+        R("line", { x1: 0, y1: 8, x2: 0, y2: 40, stroke: "#eae7e7", strokeWidth: 2 }),
+        R("line", { x1: 0, y1: 16, x2: -11, y2: 26, stroke: "#eae7e7", strokeWidth: 2 }),
+        R("line", { x1: 0, y1: 16, x2: 11, y2: 24, stroke: "#eae7e7", strokeWidth: 2 }),
+        R("line", { x1: 0, y1: 40, x2: -9, y2: 62, stroke: "#eae7e7", strokeWidth: 2 }),
+        R("line", { x1: 0, y1: 40, x2: 10, y2: 62, stroke: "#eae7e7", strokeWidth: 2 })),
+      R("g", { opacity: detected ? 1 : 0.35 },
+        R("rect", { x: 612, y: 168, width: 50, height: 84, fill: "none", stroke: boxColor, strokeWidth: 2, strokeDasharray: detected ? "none" : "4 4" }),
+        R("rect", { x: 612, y: 150, width: detected ? 96 : 62, height: 17, fill: boxColor }),
+        R("text", { x: 617, y: 163, fill: "#141312", fontSize: 11, fontFamily: "ui-monospace,Menlo,monospace", fontWeight: 700 },
+          detected ? "PED " + Math.round(conf) + "%" : "SCAN")),
+      R("polygon", { points: `${car + 150},196 610,150 610,258 ${car + 150},226`, fill: boxColor, opacity: coneOp }),
+      R("g", { transform: `translate(${car},0)` },
+        R("path", { d: "M0,224 L0,196 L34,196 L52,176 L112,176 L128,196 L152,196 L152,224 Z", fill: "#2d2b2b", stroke: "#eae7e7", strokeWidth: 2 }),
+        R("path", { d: "M40,196 L56,181 L104,181 L118,196 Z", fill: "#141312", stroke: "#605d5d", strokeWidth: 1 }),
+        R("circle", { cx: 36, cy: 226, r: 12, fill: "#141312", stroke: "#bab6b6", strokeWidth: 2 }),
+        R("circle", { cx: 118, cy: 226, r: 12, fill: "#141312", stroke: "#bab6b6", strokeWidth: 2 }),
+        R("rect", { x: 148, y: 202, width: 6, height: 8, fill: "#e7e5fe" }),
+        braking ? R("g", null,
+          R("rect", { x: -4, y: 202, width: 6, height: 8, fill: "#9184d9" }),
+          R("text", { x: -70, y: 168, fill: "#968ae0", fontSize: 11, fontFamily: "ui-monospace,Menlo,monospace", letterSpacing: 1.5 }, "DRIVER BRAKE")) : null,
+        R("text", { x: 0, y: 246, fill: "#7d7979", fontSize: 10, fontFamily: "ui-monospace,Menlo,monospace", letterSpacing: 1.5 }, "VH-042"),
+        R("text", { x: 0, y: 260, fill: t > T.brake ? "#b5abfc" : "#bab6b6", fontSize: 10, fontFamily: "ui-monospace,Menlo,monospace", letterSpacing: 1.2, fontWeight: 700 }, Math.round(speedAt(t)) + " KM/H")),
+      t >= T.flag ? R("g", null,
+        R("rect", { x: 24, y: 24, width: 268, height: 34, fill: "#9184d9" }),
+        R("text", { x: 38, y: 46, fill: "#f8f4f4", fontSize: 13, fontFamily: "Inter,sans-serif", fontWeight: 600, letterSpacing: 0.4 }, "SAFETY EVENT DETECTED")) : null
+    );
+  }
+
+  chart(t) {
+    const R = React.createElement;
+    const x0 = 66, x1 = 900, yTop = 26, yBot = 140;
+    const px = (tt) => x0 + ((tt - T.detect) / (T.end - T.detect)) * (x1 - x0);
+    const py = (c) => yBot - (c / 100) * (yBot - yTop);
+    let d = "";
+    if (t > T.detect) {
+      for (let tt = T.detect; tt <= t; tt += 0.02) {
+        const c = confAt(tt);
+        d += (d ? " L" : "M") + px(tt).toFixed(1) + "," + py(c).toFixed(1);
+      }
+    }
+    const cNow = confAt(t);
+    return R("svg", { viewBox: "0 0 940 170", width: "100%", "aria-hidden": "true", style: { display: "block", background: "#191817" } },
+      R("text", { x: 20, y: 22, fill: "#7d7979", fontSize: 9.5, fontFamily: "ui-monospace,Menlo,monospace", letterSpacing: 2 }, "LIVE DETECTION CONFIDENCE"),
+      R("line", { x1: x0, y1: yBot, x2: x1, y2: yBot, stroke: "#444141", strokeWidth: 1 }),
+      R("text", { x: 34, y: py(100) + 4, fill: "#605d5d", fontSize: 10, fontFamily: "ui-monospace,Menlo,monospace" }, "100"),
+      R("text", { x: 44, y: yBot + 4, fill: "#605d5d", fontSize: 10, fontFamily: "ui-monospace,Menlo,monospace" }, "0"),
+      R("line", { x1: x0, y1: py(50), x2: x1, y2: py(50), stroke: "#968ae0", strokeWidth: 1.5, strokeDasharray: "7 6" }),
+      R("text", { x: x0 + 4, y: py(50) - 8, fill: "#968ae0", fontSize: 10.5, fontFamily: "ui-monospace,Menlo,monospace", letterSpacing: 1.2 }, "AEB THRESHOLD 50%"),
+      R("rect", { x: px(T.degStart), y: yTop, width: Math.max(px(T.degEnd) - px(T.degStart), 2), height: yBot - yTop, fill: "#968ae0", opacity: 0.12 }),
+      R("text", { x: px(T.degEnd) + 8, y: yTop + 12, fill: "#9b9797", fontSize: 10, fontFamily: "ui-monospace,Menlo,monospace" }, "~400 MS"),
+      d ? R("path", { d, fill: "none", stroke: cNow >= 50 ? "#eae7e7" : "#968ae0", strokeWidth: 2.5 }) : null,
+      cNow !== null ? R("g", null,
+        R("circle", { cx: px(t), cy: py(cNow), r: 4.5, fill: cNow >= 50 ? "#eae7e7" : "#968ae0" }),
+        R("text", { x: Math.min(px(t) + 10, 890), y: py(cNow) - 10, fill: cNow >= 50 ? "#eae7e7" : "#968ae0", fontSize: 13, fontFamily: "ui-monospace,Menlo,monospace", fontWeight: 700 }, Math.round(cNow) + "%")) : null
+    );
+  }
+
+  posture() {
+    const s = parseInt(this.state.sec.S[1], 10);
+    const e = parseInt(this.state.sec.E[1], 10);
+    const c = parseInt(this.state.sec.C[1], 10);
+    const sum = s + e + c;
+    const row = POSTURES.find(p => sum <= p[0]) || POSTURES[POSTURES.length - 1];
+    const asil = sum <= 4 ? "QM" : sum <= 6 ? "ASIL B" : sum <= 8 ? "ASIL C" : "ASIL D";
+    return { name: row[1], note: row[2], color: row[3], asil };
+  }
+
+  renderVals() {
+    const st = this.state;
+    const statuses = st.statuses;
+    const total = RECORDS.length;
+    const received = RECORDS.filter(r => statuses[r.id] === "received").length;
+    const missing = total - received;
+    const coveragePct = Math.round((received / total) * 100);
+    const sel = RECORDS.find(r => r.id === st.selected) || RECORDS[0];
+    const selStatus = statuses[sel.id];
+    const selDot = selStatus === "received" ? "var(--color-neutral-800)" : "var(--color-accent)";
+    const p = this.posture();
+    const dec = RATIONALE[st.decision];
+    const decMeta = DECISIONS.find(d => d.key === st.decision);
+
+    const tips = {
+      inv: this.tip("inv", "This case's entry in the Autonomous Driving department's central register of deployed AI systems, tracked for governance status and annual review."),
+      euai: this.tip("euai", "EU AI Act risk tier for AI safety components of vehicles — Annex III lists high-risk use cases subject to conformity assessment and post-market monitoring."),
+      iso: this.tip("iso", "ISO/IEC 42001 is the AI management system standard. This system falls inside the department's certified management-system scope."),
+      tracked: this.tip("tracked", "The systems of record for this case: JIRA for action tracking, Confluence for governance documentation, SharePoint for the evidence library."),
+      confidence: this.tip("confidence", "Live, frame-by-frame output of the camera pedestrian detector for this single event — not an offline validation metric."),
+      aeb: this.tip("aeb", "The minimum detection confidence required before automatic emergency braking is permitted to engage."),
+      precision: this.tip("precision", "Of all detections the model flagged, the share that were correct.", true),
+      recall: this.tip("recall", "Of all pedestrians actually present, the share the model correctly detected.", true),
+      sotif: this.tip("sotif", "Safety of the Intended Functionality — covers hazards that arise even when every component works as designed."),
+      malfunction: this.tip("malfunction", "Functional safety for road vehicles — applies once a fault or malfunction in a component is evidenced."),
+      supplierProvided: this.tip("supplierProvided", "This model is developed and maintained by a third-party supplier rather than in-house, which brings it under supplier AI compliance assessment."),
+      supplierStatus: this.tip("supplierStatus", "Whether the supplier has provided the attestations and evidence the department requires before an AI component can ship in a governed vehicle system.")
+    };
+
+    const capIdx = CAPTIONS.reduce((acc, c, i) => (st.t >= c[0] ? i : acc), 0);
+    const stageIdx = STAGES.reduce((acc, s, i) => (st.t >= s[0] ? i : acc), 0);
+    const stages = STAGES.map((s, i) => ({
+      label: s[1],
+      st: "font:600 9.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;color:" + (stageIdx === i ? "var(--color-accent-400)" : "var(--color-neutral-600)")
+    }));
+    const openGaps = RECORDS.filter(r => statuses[r.id] !== "received").map(r => ({ id: r.id, node: r.node, title: r.title }));
+    const exportArtefact = () => { window.print(); };
+
+    const navBase = "display:flex;flex-direction:column;gap:5px;align-items:flex-start;background:transparent;border:0;padding:0 0 14px;cursor:pointer;text-align:left;margin-bottom:-2px;";
+    const sections = [
+      ["performance", "01", "Performance"],
+      ["safety", "02", "Safety framing"],
+      ["evidence", "03", "Evidence chain"],
+      ["board", "04", "Board decision"]
+    ].map(([key, num, label]) => ({
+      key, num, label,
+      st: navBase + (st.section === key
+        ? "color:var(--color-neutral-100);border-bottom:2px solid var(--color-accent-500);"
+        : "color:var(--color-neutral-600);border-bottom:2px solid transparent;"),
+      select: () => this.setState({ section: key })
+    }));
+
+    const validation = VALIDATION.map(v => {
+      const base = 'padding:13px 12px 13px 0;border-bottom:1px solid color-mix(in srgb, var(--color-neutral-900) 16%, transparent);font:400 14px/1.4 var(--font-body);';
+      return {
+        cond: v.cond, precision: v.precision, recall: v.recall, note: v.note || "—",
+        tdName: base + (v.weak ? "font-weight:800;color:var(--color-accent-700);" : "color:var(--color-neutral-900);"),
+        tdNum: "padding:13px 12px;border-bottom:1px solid color-mix(in srgb, var(--color-neutral-900) 16%, transparent);text-align:right;font:600 14px/1.4 ui-monospace,Menlo,monospace;" + (v.weak ? "color:var(--color-accent-700);" : "color:var(--color-neutral-900);"),
+        tdNote: 'padding:13px 0 13px 12px;border-bottom:1px solid color-mix(in srgb, var(--color-neutral-900) 16%, transparent);font:400 12px/1.4 var(--font-body);color:' + (v.weak ? 'var(--color-accent-700)' : 'var(--color-neutral-500)') + ';'
+      };
+    });
+
+    const secAxes = AXES.map(ax => {
+      const chosenCode = st.sec[ax.key];
+      const chosen = ax.opts.find(o => o[0] === chosenCode);
+      return {
+        label: ax.label, hint: ax.hint, chosen: chosen ? chosen[1] : "",
+        opts: ax.opts.map(([code, title]) => ({
+          code, title,
+          st: "flex:1;min-width:52px;padding:11px 8px;background:" + (chosenCode === code ? "var(--color-neutral-900)" : "transparent") +
+              ";color:" + (chosenCode === code ? "var(--color-neutral-100)" : "var(--color-neutral-800)") +
+              ";border:0;border-right:1px solid color-mix(in srgb, var(--color-neutral-900) 25%, transparent);cursor:pointer;font:600 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.1em;text-align:left;",
+          select: () => this.setState(s => ({ sec: Object.assign({}, s.sec, { [ax.key]: code }) }))
+        }))
+      };
+    });
+
+    const records = RECORDS.map(r => {
+      const status = statuses[r.id];
+      const active = r.id === st.selected;
+      return {
+        id: r.id, node: r.node, step: r.step, owner: r.owner,
+        statusLabel: status === "received" ? "RECEIVED" : "MISSING",
+        dot: status === "received" ? "var(--color-neutral-500)" : "var(--color-accent-500)",
+        st: "flex:1;min-width:150px;display:flex;flex-direction:column;gap:4px;align-items:flex-start;text-align:left;padding:16px 14px;cursor:pointer;border:0;border-right:1px solid color-mix(in srgb, var(--color-neutral-200) 20%, transparent);" +
+            "background:" + (active ? "var(--color-neutral-900)" : "transparent") + ";border-top:2px solid " + (active ? "var(--color-accent-500)" : "transparent") + ";",
+        select: () => this.setState({ selected: r.id })
+      };
+    });
+
+    const decisions = DECISIONS.map(d => {
+      const active = d.key === st.decision;
+      return {
+        label: d.label, kicker: d.kicker, blurb: d.blurb,
+        mark: active ? "var(--color-accent)" : "color-mix(in srgb, var(--color-neutral-200) 25%, transparent)",
+        kickerColor: active ? "var(--color-neutral-600)" : "var(--color-neutral-500)",
+        titleColor: active ? "var(--color-neutral-900)" : "var(--color-neutral-100)",
+        bodyColor: active ? "var(--color-neutral-800)" : "var(--color-neutral-500)",
+        st: "display:flex;flex-direction:column;align-items:flex-start;text-align:left;padding:22px 22px 24px;cursor:pointer;" +
+            (active ? "background:var(--color-neutral-100);border:1px solid var(--color-neutral-100);" : "background:transparent;border:1px solid color-mix(in srgb, var(--color-neutral-200) 28%, transparent);"),
+        select: () => this.setState({ decision: d.key })
+      };
+    });
+
+    return {
+      scene: this.scene(st.t),
+      chart: this.chart(st.t),
+      caption: CAPTIONS[capIdx][1],
+      replay: () => this.start(),
+      skip: () => { cancelAnimationFrame(this._raf); this.setState({ t: T.end, running: false }); },
+      togglePlay: () => this.togglePlay(),
+      seek: (e) => this.seek(parseFloat(e.target.value)),
+      playLabel: st.running ? "PAUSE" : "PLAY",
+      scrubT: st.t, scrubMax: T.end, stages,
+      goBoard: () => {
+        this.setState({ section: "board" });
+        requestAnimationFrame(() => {
+          const el = document.getElementById("board-decision");
+          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 90, behavior: "smooth" });
+        });
+      },
+      sections,
+      isPerf: st.section === "performance",
+      isSafety: st.section === "safety",
+      isEvidence: st.section === "evidence",
+      isBoard: st.section === "board",
+      validation,
+      secAxes,
+      secCode: st.sec.S + " / " + st.sec.E + " / " + st.sec.C,
+      posture: p.name, postureNote: p.note, postureColor: p.color, asilLabel: p.asil,
+      records,
+      coveragePct,
+      coverageColor: coveragePct === 100 ? "var(--color-neutral-100)" : "var(--color-accent-500)",
+      receivedCount: received, totalCount: total,
+      missingLabel: missing === 0 ? "Chain complete" : missing + (missing === 1 ? " record missing" : " records missing"),
+      openGaps, gapsCount: openGaps.length, govActions: GOV_ACTIONS, tips,
+      gapsNote: openGaps.length === 0 ? "All records received — chain complete." : openGaps.length + " of " + total + " steps are open · sign-off cannot complete without them.",
+      selId: sel.id, selTitle: sel.title, selBody: sel.body, selNext: sel.next, selDot,
+      selHasDetail: !!sel.detail,
+      selDetail: (sel.detail || []).map(([k, v]) => ({ k, v })),
+      selFields: [
+        { k: "TYPE", v: sel.type, c: "var(--color-neutral-900)" },
+        { k: "ACCOUNTABLE OWNER", v: sel.owner, c: "var(--color-neutral-900)" },
+        { k: "SOURCE", v: sel.source, c: "var(--color-neutral-900)" },
+        { k: "DOWNSTREAM RECIPIENT", v: sel.downstream, c: "var(--color-neutral-900)" },
+        { k: "STATUS", v: selStatus === "received" ? "Received" : "Missing", c: selStatus === "received" ? "var(--color-neutral-800)" : "var(--color-accent)" }
+      ],
+      toggleLabel: selStatus === "received" ? "DEMO: MARK MISSING" : "DEMO: MARK RECEIVED",
+      toggleSel: () => this.setState(s => ({
+        statuses: Object.assign({}, s.statuses, { [sel.id]: s.statuses[sel.id] === "received" ? "missing" : "received" })
+      })),
+      decisions,
+      chosenLabel: decMeta ? decMeta.label : "",
+      rationale: dec.text,
+      weights: dec.weights.map(([k, v]) => ({ k, v })),
+      conditions: dec.conditions,
+      exportArtefact
+    };
+  }
+}
+
+</script>
+</body>
+</html>
